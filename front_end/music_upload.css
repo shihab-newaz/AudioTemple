@@ -1,0 +1,75 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 20%;
+    display: block;
+    height: 15vw;
+    width: 50vw;
+    margin-top: 20px;
+    background: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.5));
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upload-form label {
+    font-size: 1.5rem;
+    border: 5px solid black;
+    border-radius: 20px;
+    background-color: azure;
+    cursor: pointer;
+    padding: 10px 10px;
+}
+
+.upload-form label:hover {
+    background-color: grey;
+    padding: 15px 15px;
+}
+
+.upload-form input[type=file] {
+    border-radius: 20px;
+    opacity: 0;
+    font-size: 1.3rem;
+    overflow: hidden;
+}
+
+.upload-btn {
+    width: 25%;
+    height: auto;
+    padding: 6px 2px;
+    border: 3px solid currentColor;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 1.55rem;
+    cursor: pointer;
+    /* left: 10%; */
+    /* position: absolute; */
+}
+
+.upload-btn:hover {
+    background-color: grey;
+    padding: 7px 6px;
+}
+
+.file_choose {
+    position: absolute;
+    /* opacity: 0; */
+}
+
+.header-1,
+.container-header {
+    text-align: center;
+}
+
+.header-1 {
+    color: white;
+    margin: 5px 0px 10px 0px;
+}
+
+.container-header {
+    margin-right: 10%;
+}

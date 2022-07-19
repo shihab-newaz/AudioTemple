@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body {
+    background-color: white;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+}
+
+.navbar-list {
+    width: 90vw;
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    height: 65px;
+    background-color: black;
+    color: white;
+}
+
+li.logo {
+    font-size: larger;
+    align-items: center;
+    display: flex;
+    font-weight: bolder;
+    padding-bottom: 11px;
+}
+
+nav ul li {
+    padding: 10px 7px;
+}
+
+nav ul li.logo img {
+    height: 40px;
+    padding: 0px 5px;
+    /* background: linear-gradient(86deg, #000000a8, transparent); */
+}
+
+
+.dropbtn {
+    font-size: 1.1rem;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 22px 0px;
+    background-color: black;
+    font-family: inherit;
+    margin: 0;
+}
+
+.nav-username {
+    width: 13vw;
+    border: none;
+    outline: none;
+    display: block;
+    list-style-type: none;
+    height: 65px;
+    overflow: hidden;
+    background-color: #000;
+    color: white;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 110px;
+    box-shadow: 0px 8px 16px 0px rgb(21 182 162 / 58%);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: left;
+    color: black;
+    padding: 0px 0px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.nav-username:hover .dropdown-content {
+    display: block;
+}
+
+.navbar-list li a:hover {
+    background-color: black;
+    color: white;
+}
+
+button.dc-btn {
+    border: none;
+    font-size: 1.15rem;
+    padding: 0px 0px 0px 5px;
+    min-width: 110px;
+}
+
+button.dc-btn:hover {
+    background-color: rgba(194, 189, 189, 0.781);
+    color: black;
+    cursor: pointer;
+}
+
+a {
+    background-color: inherit;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    display: block;
+    text-align: center;
+}
+
+.song-list {
+    color: white;
+    text-align: -webkit-center;
+    background-image: url(logos/music.jpg);
+    width: 100vw;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+}
+
+.song {
+    height: 55px;
+    width: 70%;
+    display: flex;
+    color: ghostwhite;
+    margin: 20px 0px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 30px;
+    background: linear-gradient(88deg, #000000, #0000005e);
+}
+
+.song img {
+    width: 40px;
+    margin: 0px 20px;
+
+}
+
+.songLibrary {
+    min-height: auto;
+    background-color: #01081ef2;
+    color: white;
+    font-family: 'Varela Round', sans-serif;
+    display: flex;
+    width: 100vw;
+}
+
+.icon {
+    background-image: url(logos/1.png);
+}
+
+audio::-webkit-media-controls-panel {
+    background: linear-gradient(180deg, #093300c7, transparent);
+}
+
+audio::-webkit-media-controls-mute-button {
+    background-color: #B1D4E0;
+    border-radius: 50%;
+}
+audio::-webkit-media-controls-play-button {
+    background-color: #B1D4E0;
+    border-radius: 50%;
+  }
+  
+  audio::-webkit-media-controls-play-button:hover {
+    background-color: rgba(177,212,224, .7);
+  }

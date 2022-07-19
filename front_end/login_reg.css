@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-image: linear-gradient(red,red,url(logos/login.jpg)); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: linear-gradient(rgb(100 0 0 / 0%), rgb(0 27 75 / 87%)), url(logos/5.jpg);
+}
+
+.register-page {
+    width: 30vw;
+    height: 68vh;
+    border: double;
+    /* background-image: linear-gradient(rgb(100 0 0 / 20%), rgb(0 27 75 / 87%)), url(logos/login.jpg); */
+    box-shadow: 0 0 40px 20px rgb(0 0 0 / 33%);
+    box-sizing: border-box;
+    align-items: center;
+    display: block;
+    text-align: center;
+    background-color: #08020ad6;
+}
+
+.login-page {
+    border: double;
+    width: 30vw;
+    height: 75vh;
+    background-size: cover;
+    background-position: center;
+    padding: 0px;
+    box-shadow: 0 0 40px 20px rgb(0 0 0 / 33%);
+    align-items: center;
+    display: block;
+    text-align: center;
+    background: linear-gradient(80deg, #040f3e, #0000006e);
+}
+
+.email,
+.password,
+.name {
+    width: 100%;
+    height: 33px;
+    background: transparent;
+    border: 1px solid #fff;
+    margin: 10px 0px;
+    border-radius: 20px;
+    padding: 0px 3px;
+    box-sizing: border-box;
+    outline: inset;
+    text-align: center;
+    color: linen;
+}
+
+::placeholder {
+    color: #ffff;
+    font-size: 1.9rem;
+}
+
+.register-btn {
+    width: 50%;
+    height: 36px;
+    background: transparent;
+    border: 4px solid rgb(171 151 151);
+    border-radius: 20px;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    text-align: center;
+    color: white;
+    font-size: 1.6rem;
+}
+
+.sign-up-btn,
+.login {
+    width: 50%;
+    height: 47px;
+    background: transparent;
+    border: 4px solid rgb(171 151 151);
+    margin: 0px 25%;
+    border-radius: 20px;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    text-align: center;
+    color: white;
+    font-size: 1.55rem;
+}
+
+#check-box {
+    margin-left: 15px;
+    margin-top: 9px;
+    margin-bottom: 17px;
+}
+
+a:hover {
+    text-decoration: none;
+    color: rgb(217, 219, 233);
+}
+
+a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    display: block;
+    text-align: center;
+}
+
+.sign-up-box {
+    margin-top: 60px;
+}
+
+.sign-up-box p {
+    margin: 0px 0 1px;
+    font-size: 1.55rem;
+}
