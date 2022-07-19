@@ -1,5 +1,6 @@
 <?php
-include "Reg_Database.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/back_end/Reg_Database.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/back_end/function.php";
 $query = "SELECT * FROM songs ORDER BY id";
 $fetchAudio = mysqli_query($connection2, $query);
 ?>
@@ -12,44 +13,15 @@ $fetchAudio = mysqli_query($connection2, $query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="stylesheet" href="/front_end/songLibrary.css">
+    <link rel="stylesheet" href="/front_end/premium_page.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/57c5dcc0a7.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <nav class="navbar">
-        <ul class="navbar-list">
-            <li class="logo"><img src="/front_end/logos/3.png" alt="No image">AudioTemple</li>
-            <li><a href="/front_end/homepage.php">Home</a></li>
-            <li><a href="#">About</a></li>
-        </ul>
-        <div class="nav-username">
-            <button class="dropbtn" name="dropbtn">
-                <?php
-                if (isset($_SESSION['username'])) {
-                    echo '<i class="fa-solid fa-user"></i> ' . $_SESSION['username'];
-                } else {
-                    echo ' <i class="fa-brands fa-spotify"></i> <i class="fa-solid fa-user"></i>';
-                }
-                ?>
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <?php
-            if (isset($_SESSION['username'])) {
-                echo '  <div class="dropdown-content">
-            <form action=" ' . htmlspecialchars($_SERVER["PHP_SELF"]) . ' "method="POST">
-            <button type="submit" class="dc-btn" name="logout">Log Out</button></button><br>
-            <button type="submit" class="dc-btn" name="library">Library</button></button><br>
-            </form>
-            </div>';
-            } else {
-                echo '  <div class="dropdown-content">
-            <a href="/front_end/login.html">   Log in</a>
-            </div> ';
-            }
-            ?>
-        </div>
-    </nav>
+    <?php
+     include $_SERVER['DOCUMENT_ROOT'] . "/front_end/navbar.php";
+     ?>
     <div class="songLibrary">
         <div class="song-list">
             <h1>Song Library</h1>
@@ -69,9 +41,7 @@ $fetchAudio = mysqli_query($connection2, $query);
                     </audio></div>';
                 }
                 ?>
-
             </div>
         </div>
 </body>
-
 </html>

@@ -1,10 +1,9 @@
 <?php
-include "Reg_Database.php";
-include "function.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/back_end/Reg_Database.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/back_end/function.php";
 global $connection;
 
 if (isset($_POST['library'])) {
-    // header("Location:/back_end/songLibrary.php");
     echo  '<script>var url = "/back_end/songLibrary.php";
     window.location.assign(url);</script>';
 }
@@ -12,36 +11,29 @@ if (isset($_POST['logout'])) {
     destroy_session();
     destroy_cookie();
     echo  '<script>var url = "/back_end/homepage.php";
-   window.location.assign(url);</script>';
+    window.location.assign(url);</script>';
 }
 if (isset($_SESSION['username']) && isset($_SESSION['email'])) {
     if (isset($_POST['buy-btn'])) {
-
-        if (
-            $_POST['cardname'] != null && $_POST['cardnumber'] != null && $_POST['expmonth'] != null
-            && $_POST['expyear'] != null && $_POST['cvv'] != null
-        ) {
-            $_SESSION['premium-user'] = $_SESSION['username'];
-            $_SESSION['premium-user_email'] = $_SESSION['email'];
-            $premium_user = $_SESSION['premium-user'];
-            $premium_user_email = $_SESSION['premium-user_email'];
-            $query = "INSERT IGNORE INTO premium_users(id,username,email)
-             VALUES('',' $premium_user',' $premium_user_email')";
-            $result = mysqli_query($connection, $query);
-
-            setcookie('premium-user', $_SESSION['username'], time() + 12 * 30 * 86400);
-            setcookie('premium-user_email',  $_SESSION['email'], time() + 12 * 30 * 86400);
-            echo  '<script>var url = "/back_end/homepage.php";
-            window.location.assign(url);</script>';
-        }
+        $_SESSION['premium-user'] = $_SESSION['username'];
+        $_SESSION['premium-user_email'] = $_SESSION['email'];
+        // setcookie('premium-user', $_SESSION['username'], time() + 12 * 30 * 86400);
+        // setcookie('premium-user_email',  $_SESSION['email'], time() + 12 * 30 * 86400);
+      checkout();
     }
-}
-if (!isset($_SESSION['username']) && !isset($_SESSION['email'])) {
+} else if (isset($_COOKIE['username']) && isset($_COOKIE['email'])) {
+    if (isset($_POST['buy-btn'])) {
+        $_SESSION['premium-user'] = $_COOKIE['username'];
+        $_SESSION['premium-user_email'] = $_COOKIE['email'];
+        // setcookie('premium-user', $_SESSION['username'], time() + 12 * 30 * 86400);
+        // setcookie('premium-user_email',  $_SESSION['email'], time() + 12 * 30 * 86400);
+        checkout();
+    }
+} else {
     echo '<script type="text/javascript">
         alert("You must login first");</script>';
     echo  '<script>var url = "/back_end/checkout.php";
         window.location.assign(url);</script>';
-    // header("Location:checkout_page.php");
 }
 
 ?>
@@ -62,7 +54,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['email'])) {
 
 <body>
     <?php
-    include "/xampp/htdocs/WEB/front_end/navbar.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/front_end/navbar.php";
     ?>
 
     <div class="header-text">

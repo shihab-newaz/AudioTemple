@@ -1,24 +1,11 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . "/back_end/Reg_Database.php";
-include "function.php";
-
+include $_SERVER['DOCUMENT_ROOT'] . "/back_end/function.php";
 if (isset($_POST['logout'])) {
-    session_unset();
-    echo session_id();
-    $cookie_par = session_get_cookie_params();
-    setcookie(
-        session_name(),
-        '',
-        time() - 86400,
-        $cookie_par['path'],
-        $cookie_par['domain'],
-        $cookie_par['secure'],
-        $cookie_par['httponly']
-    );
-    session_destroy();
-    setcookie("username", "", time() - 86400);
-    setcookie("email", "", time() - 86400);
-    header("Location:premium_page.php");
+    destroy_session();
+    destroy_cookie();
+    echo  '<script>var url = "/back_end/premium_page.php";
+    window.location.assign(url);</script>';;
 }
 if (isset($_POST['library'])) {
     header("Location:songLibrary.php");
@@ -44,7 +31,7 @@ if (isset($_POST['library'])) {
 
 <body>
     <?php
-    include "/xampp/htdocs/WEB/front_end/navbar.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/front_end/navbar.php";
     ?>
 
     <section class="section-1">

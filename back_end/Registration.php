@@ -1,5 +1,6 @@
 <?php
-include "Reg_Database.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/back_end/Reg_Database.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/back_end/function.php";
 function insert($username, $email, $password)
 {
     global $connection;

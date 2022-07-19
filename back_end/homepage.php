@@ -1,13 +1,14 @@
 <?php
-include "Reg_Database.php";
-include "function.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/back_end/Reg_Database.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/back_end/function.php";
 if (isset($_POST['library'])) {
     header("Location:/back_end/songLibrary.php");
 }
 if (isset($_POST['logout'])) {
     destroy_session();
     destroy_cookie();
-    header("Location:homepage.php");
+    echo  '<script>var url = "/back_end/homepage.php";
+    window.location.assign(url);</script>';
 }
 ?>
 
@@ -30,7 +31,7 @@ if (isset($_POST['logout'])) {
 
 <body>
     <?php
-    include "/xampp/htdocs/WEB/front_end/navbar.php";
+   include $_SERVER['DOCUMENT_ROOT'] . "/front_end/navbar.php";
     ?>
     <div class="home">
         <div class="home-container">

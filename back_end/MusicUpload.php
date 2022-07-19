@@ -1,7 +1,15 @@
 <?php
-include "Reg_Database.php";
-include "function.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/back_end/Reg_Database.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/back_end/function.php";
 global $connection2;
+
+if (isset($_POST['logout'])) {
+    destroy_session();
+    destroy_cookie();
+    echo  '<script>var url = "/back_end/homepage.php";
+    window.location.assign(url);</script>';
+}
+
 if (isset($_POST['upload'])) {
     $maxsize = 15728640;
     if (isset($_FILES['musicFile']['name']) && $_FILES['musicFile']['name'] != '') {
@@ -50,7 +58,7 @@ $_SESSION['default'] = "Please select an file to upload to database";
 
 <body>
     <?php
-    include "/xampp/htdocs/WEB/front_end/navbar.php";
+   include $_SERVER['DOCUMENT_ROOT'] . "/front_end/navbar.php";
     ?>
     <div class="container">
         <h1 class="container-header">Database Admin</h1>

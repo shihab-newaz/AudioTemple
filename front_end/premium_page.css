@@ -27,7 +27,8 @@ a {
     display: flex;
     font-family: 'Roboto', sans-serif;
     font-size: 1.3rem;
-    background-color: black;
+    /* background-color: black; */
+    background: linear-gradient(0deg, #000000cf, rgba(0 0 0),#000000d1);
     color: white;
     height: 4.5vw;
     margin: 0px;
@@ -130,7 +131,9 @@ button.dc-btn:hover {
     width: auto;
     margin: 10px;
 }
-
+.section-1 .header1{
+    color: #000000;
+}
 .section-2,
 .section-3,
 .section-4 {

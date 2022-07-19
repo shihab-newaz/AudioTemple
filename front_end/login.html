@@ -1,38 +1,43 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="login_reg.css">
-    <link rel="stylesheet" 
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/57c5dcc0a7.js" crossorigin="anonymous"></script>
     <meta charset="UTF--8">
     <title>
         User Login
     </title>
 </head>
+
 <body>
-    <form method="POST" action="/back_end/Login.php">
+    <form method="post" action="/back_end/Login.php">
+
         <div class="container">
             <div class="login-page">
-                <h1>LOGIN</h1>
+                <h1>USER LOGIN</h1>
                 <input type="text" class="email" id="email" placeholder="Enter your email address" name="email"><br>
                 <input type="password" class="password" placeholder="Enter your password" name="password"><br>
                 <input type="submit" value="Log In" class="login" name="login">
                 <input type="checkbox" id="check-box" name="check-box"><span> Remember Me</span><br>
                 <div class="admin">
                     <p style="text-align:center;">If you are an admin login here
-                        <i class="fa-solid fa-circle-arrow-down"></i><p><br>
+                        <a href="/front_end/admin.html"><i class="fa-solid fa-right-to-bracket"></i></a>
+                    <p>
                 </div>
                 <div class="sign-up-box">
                     <p style="text-align: center;">Don't have an account?Sign up here
-                        <i class="fa-solid fa-circle-arrow-down"></i><p><br>
+                        <i class="fa-solid fa-circle-arrow-down"></i>
+                    <p><br>
                         <button type="submit" class="sign-up-btn">
-                        <a href="registration.html">Create an account</a></button>
+                            <a href="/front_end/registration.html">Create an account</a></button>
                 </div>
             </div>
         </div>
     </form>
 </body>
+
 </html>

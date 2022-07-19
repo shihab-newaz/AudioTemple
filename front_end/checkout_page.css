@@ -106,7 +106,7 @@ a {
     list-style-type: none;
     /* height: 70px; */
     overflow: hidden;
-    background-color: #000;
+    background-color:inherit;
     color: white;
 }
 
