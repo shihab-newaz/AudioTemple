@@ -9,12 +9,15 @@ if (isset($_POST['logout'])) {
     echo  '<script>var url = "/back_end/homepage.php";
     window.location.assign(url);</script>';
 }
+if (isset($_POST['library'])) {
+    header("Location:songLibrary.php");
+}
 
-if (isset($_POST['upload'])) {
+if (isset($_POST['delete'])) {
     $maxsize = 15728640;
     if (isset($_FILES['musicFile']['name']) && $_FILES['musicFile']['name'] != '') {
         $fileName = $_FILES['musicFile']['name'];
-        $directory = "audio/";
+        $directory = $_SERVER['DOCUMENT_ROOT'] . "/back_end/audio/";
         $targetFile = $directory . $fileName;
 
         $extension = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
@@ -26,19 +29,24 @@ if (isset($_POST['upload'])) {
             } else {
 
                 if (move_uploaded_file($_FILES['musicFile']['tmp_name'], $targetFile)) {
-                    $query = "INSERT into songs(id,file_name,file_location) VALUES ('','$fileName','$targetFile')";
-                    mysqli_query($connection2, $query);
-                    $_SESSION['message'] = "Uploaded to database";
+                    $insert_query = "INSERT into songs(id,file_name,file_location) VALUES ('','$fileName','$targetFile')";
+                    $delete_query =  "DELETE FROM songs WHERE songs.file_name='$fileName'";
+                    mysqli_query($connection2, $delete_query);
+                    $_SESSION['message'] = "Deleted from database";
+                    $x=$_SESSION['message'];
+                    echo "<script>
+                    alert('$x');
+                    </script>";
+                    
                 }
             }
         } else {
             $_SESSION['message'] = "Invalid file extension";
         }
     }
-    // header('location:MusicUpload.php');
-    // exit;
 }
-$_SESSION['default'] = "Please select an file to upload to database";
+$_SESSION['deletion'] = "Please select a file to delete from database";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,36 +66,31 @@ $_SESSION['default'] = "Please select an file to upload to database";
 
 <body>
     <?php
-   include $_SERVER['DOCUMENT_ROOT'] . "/front_end/navbar.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/front_end/navbar.php";
     ?>
-    <div class="container">
-        <h1 class="container-header">Database Admin</h1>
-        <div class="form-container">
-            <header>
-                <h3 class="header-1">
-                    <?php
-                    if (isset($_SESSION['default'])) {
-                        echo $_SESSION['default'];
-                    } ?>
-                </h3>
-            </header>
-            <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data" class="upload-form">
-                <label for="chooseFile">Choose an audio file
-                    <input type="file" class="file_choose" id="chooseFile" name="musicFile">
-                </label>
-                <br>
-                <input type="submit" class="upload-btn" name="upload" id="fileupload" value="Upload">
-            </form>
-            <h3 class="header-1">
-                <?php
-                if (isset($_POST['upload'])) {
-                    echo $_SESSION['message'];
-                    unset($_SESSION['message']);
-                } else {
-                    echo "";
-                } ?>
+    <section class="admin-panel">
+        <div class="container">
+            <h1 class="container-header">Database Admin</h1>
+            <div class="form-container">
+                <header>
+                    <h3 class="header-1">
+                        <?php
+                        if (isset($_SESSION['deletion'])) {
+                            echo $_SESSION['deletion'];
+                        } ?>
+                    </h3>
+                </header>
+                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data" class="upload-form">
+                    <label for="chooseFile">Choose an audio file
+                        <input type="file" class="file_choose" id="chooseFile" name="musicFile">
+                    </label>
+                    <br>
+                    <input type="submit" class="upload-btn" name="delete" id="fileupload" value="Delete">
+                    </form>
+                    <h3 class="header-1">To upload an audio file <a href="/back_end/Insert.php">click here</a></h3>
+            </div>
         </div>
-    </div>
+    </section>
 </body>
 
 </html>

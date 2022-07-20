@@ -19,7 +19,7 @@ if (isset($_POST['admin-login'])) {
             $_SESSION['admin-email'] = $email;
             $_SESSION['admin-username'] = $username;
             $_SESSION['admin-password'] = $password;
-            header("Location:MusicUpload.php");
+            header("Location:Delete.php");
         }else{
             echo '<script type="text/javascript">
             alert("Please enter the correct email and password");
