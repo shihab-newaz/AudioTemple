@@ -519,16 +519,20 @@ COMMIT;
 INSERT INTO USERS_TABLE(user_id, username, email, password, country, age) VALUES
 (5,'Rahim', 'Rahim@gmail.com', '123134','Bangladesh',27 );
 SELECT * FROM USERS_TABLE;
+SELECT Count(*) FROM USERS_TABLE;
 ROLLBACK;
 SELECT * FROM USERS_TABLE;
+SELECT Count(*) FROM USERS_TABLE;
 INSERT INTO USERS_TABLE(user_id, username, email, password, country, age) VALUES
 (5,'Rahim', 'Rahim@gmail.com', '123134','Bangladesh',27 );
 SELECT * FROM USERS_TABLE;
+SELECT Count(*) FROM USERS_TABLE;
 SAVEPOINT user_table_insert;
 INSERT INTO USERS_TABLE(user_id, username, email, password, country, age) VALUES
 (6,'Karim', 'Karim@gmail.com', '123134','Bangladesh',25);
 INSERT INTO USERS_TABLE(user_id, username, email, password, country, age) VALUES
 (7,'Zahid', 'Zahid@gmail.com', '12323134','Bangladesh',26);
 SELECT * FROM USERS_TABLE;
+SELECT Count(*) FROM USERS_TABLE;
 ROLLBACK TO user_table_insert;
-SELECT * FROM USERS_TABLE;
+SELECT Count(*) FROM USERS_TABLE;
