@@ -233,6 +233,31 @@ VALUES
 'A type of music, usually played on electronic instruments, that is popular with many people because 
  it consists of short songs with a strong beat and simple tunes that are easy to remember',
  201 );
+  INSERT INTO GENRE(name, description, song_id)
+VALUES
+( 'Pop',
+'A type of music, usually played on electronic instruments, that is popular with many people because 
+ it consists of short songs with a strong beat and simple tunes that are easy to remember',
+ 202 );
+  INSERT INTO GENRE(name, description, song_id)
+VALUES
+( 'Pop',
+'A type of music, usually played on electronic instruments, that is popular with many people because 
+ it consists of short songs with a strong beat and simple tunes that are easy to remember',
+ 301 );
+  INSERT INTO GENRE(name, description, song_id)
+VALUES
+( 'Hip-hop',
+'Hip-hop is a genre of music most often characterized by a strong,
+ rhythmic beat and a rapping vocal track',
+ 703 );
+   INSERT INTO GENRE(name, description, song_id)
+VALUES
+( 'Hip-hop',
+'Hip-hop is a genre of music most often characterized by a strong,
+ rhythmic beat and a rapping vocal track',
+ 702 );
+
 
 DESCRIBE  USERS_TABLE;
 DESCRIBE  PLAYLIST;
@@ -379,11 +404,21 @@ END;
 /
 
 --PL/SQL normal loop example
-
-
-
+SET SERVEROUTPUT ON
+DECLARE
+    cnt NUMBER(2):=0;
+    
+BEGIN
+    LOOP
+       DBMS_OUTPUT.PUT_LINE('Count value->'||cnt);
+        cnt:=cnt+1;
+        EXIT when cnt>5;
+    END LOOP;
+END;
+/
 
 --PL/SQL for loop and cursor
+--Finding the podcast types and duration for all artists
 SET SERVEROUTPUT ON
 DECLARE
     CURSOR artist_podcast IS 
@@ -404,7 +439,81 @@ BEGIN
     END LOOP;
     CLOSE artist_podcast;
 END;
+/ 
+
+--PL/SQL procedures
+--Getting the popularity of a song by the number of times it has been played
+SET SERVEROUTPUT ON
+CREATE or REPLACE PROCEDURE get_song_popularity IS 
+    times_played FEATURES.song_played%type;
+    song_title  VARCHAR(100);
+    popularity VARCHAR(100);
+	
+BEGIN
+    song_title := 'Monster';
+
+    SELECT f.song_played  INTO times_played
+    FROM FEATURES f,SONG s
+    WHERE title LIKE song_title AND  s.song_id=f.song_id;
+
+    IF times_played < 100000  THEN popularity := 'Unpopular';
+    ELSIF times_played >= 100000 and times_played <1000000  THEN
+               popularity := 'Somewhat Popular';
+    ELSIF times_played >= 1000000 and times_played <=10000000 THEN
+       popularity := 'Very Popular';
+   ELSE
+	popularity := 'Immensely Popular'; 
+    END IF;
+
+DBMS_OUTPUT.PUT_LINE ('The song '||song_title||
+' is played '||times_played||
+ ' time and is '||popularity||'');
+EXCEPTION
+         WHEN others THEN
+	      DBMS_OUTPUT.PUT_LINE (SQLERRM);
+END;
 /
+SHOW errors
+
+SET SERVEROUTPUT ON
+BEGIN
+   get_song_popularity;
+END;
+/
+
+--PL/SQL functions
+CREATE OR REPLACE FUNCTION avg_rating RETURN NUMBER IS
+ avg_ratings SONG.ratings%type;
+BEGIN
+ SELECT AVG(ratings) INTO avg_ratings
+ FROM SONG;
+ RETURN avg_ratings;
+END;
+/
+
+SET SERVEROUTPUT ON
+BEGIN
+dbms_output.put_line('Average ratings: ' || avg_rating);
+END;
+/
+
+--PL/SQL Trigger
+CREATE OR REPLACE TRIGGER trig BEFORE INSERT OR UPDATE ON ALBUM
+FOR EACH ROW
+DECLARE
+    min_release_year constant number(4):=2000;
+BEGIN
+    IF :new.release_year<min_release_year THEN
+    RAISE_APPLICATION_ERROR(-20000,'Release Year must be after the year 2000');
+    END IF;
+END;
+/
+INSERT INTO ALBUM(album_id, name, artist_id,release_year)
+VALUES (73, 'Blue', 9, 2013);
+--Will not trigger
+INSERT INTO ALBUM(album_id, name, artist_id,release_year)
+VALUES (74, 'Venom', 9, 1999);
+--Will trigger
 --Transaction Management
 COMMIT;
 INSERT INTO USERS_TABLE(user_id, username, email, password, country, age) VALUES
